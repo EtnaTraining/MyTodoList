@@ -1,7 +1,7 @@
 function ApplicationTabGroup() {
 		
 		var NewToDoWindow = require('ui/NewTodoWindow'),
-			ListToDoWindow = require('ui/ListTodoWindow');
+			ListToDoWindow = require('ui/ListToDoWindow');
 		
 		var tabGroup = Titanium.UI.createTabGroup();
 		
