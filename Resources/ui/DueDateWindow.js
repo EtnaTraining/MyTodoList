@@ -35,6 +35,11 @@ function DueDateWindow() {
 			
 		});
 		
+		win.addEventListener("mionuovoEvento", function() {
+			Ti.API.info("ciao");
+		});
+		
+		
 		return win;
 		
 }

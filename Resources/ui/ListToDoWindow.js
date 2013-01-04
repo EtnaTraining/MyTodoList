@@ -1,12 +1,50 @@
 function ListToDoWindow() {
 	
-		//var todoList = [];	
+		// inizializzazione tramite properties
+		//var todoList = Ti.App.Properties.getList("todolist", []);
+	
+		// inizializzazione todolist via db
+		var datastore = require('/services/datastore');
+		var todoList = datastore.getToDoList();
+		
+		// inizializzaione todolist via rete
+		/*var net = require('/services/net2');
+		var todoList = [];
+		net.getToDos(function(lista) {
+			Ti.API.info(lista);
+			var todoList = lista;
+			//todoListTableView.data = todoList;
+			todoListTableView.setData(todoList);
+		}); */		
+		
+		//Ti.API.info(todoList);
+		var udid = Ti.Platform.id;
+		//var todoList = [];
+		
 		var win = Ti.UI.createWindow({
 			title: "Elenco ToDOs"
 		});
 		
-		var todoListTableView = Ti.UI.createTableView();
+		var todoListTableView = Ti.UI.createTableView({
+			data: todoList,
+			editable: true
+		});
 		win.add(todoListTableView);
+		
+		// inizializza la todo list
+		
+
+		
+		
+		
+		/* load from network
+		var net = require('/services/net');
+				net.getToDoList(udid, function(todolist) {
+					todoList = todolist;
+					todoListTableView.setData(todoList);
+				});
+				*/
+		
 		
 		
 		// aggiunge una riga della tabella con una nuova todo
@@ -16,10 +54,22 @@ function ListToDoWindow() {
 				location: e.location,
 				alarm: e.alarm,
 				dueDate: e.dueDate,
+				filename: e.filename,
 				hasChild: true
 			};
-			//todoList.push(todo);
+			todoList.push(todo);
 			todoListTableView.appendRow(todo);
+			
+			// salvataggio sulla property
+			//Ti.App.Properties.setList("todolist", todoList);
+			
+			// salvataggio sul db
+			datastore.saveToDo(todo);
+			// salvataggio in rete
+			//net.saveToDo(todo);
+			
+			
+			//net.saveToDo(udid, todo);	
 			//todoListTableView.setData(todoList);
 			Ti.App.fireEvent('switchTab', {tab:1});
 		});

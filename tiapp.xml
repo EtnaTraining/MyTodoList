@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ti:app xmlns:ti="http://ti.appcelerator.org">
+    <property name="ti.android.runtime">rhino</property>
     <deployment-targets>
         <target device="mobileweb">true</target>
         <target device="iphone">true</target>
@@ -8,7 +9,7 @@
         <target device="blackberry">false</target>
     </deployment-targets>
     <sdk-version>1.8.0.1</sdk-version>
-    <id>it.etnatraining.mytodolist2</id>
+    <id>it.etnatraining.mytodolist</id>
     <name>MyToDoList2</name>
     <version>1.0</version>
     <publisher>etna</publisher>
@@ -36,9 +37,9 @@
         </orientations>
     </iphone>
     <android xmlns:android="http://schemas.android.com/apk/res/android">
-    	<manifest>
-		<supports-screens android:anyDensity="false"/>
-	</manifest>
-	</android>
+        <manifest>
+            <supports-screens android:anyDensity="false"/>
+        </manifest>
+    </android>
     <modules/>
 </ti:app>
