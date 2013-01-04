@@ -186,8 +186,7 @@ function NewTodoWindow () {
 				return;
 			}
 			var filename = titleTxt.value.replace(/ /g, "_") + '_' + new Date().getTime() + '.jpg';
-			Ti.API.info(iv.image instanceof String);
-			if (!(iv.image instanceof String)) {
+			if (!(iv.image === "todo.png")) {
 				Ti.API.info(filename);
 				var f = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, filename);
 				f.write(iv.image);

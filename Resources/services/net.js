@@ -11,12 +11,11 @@ exports.getToDos = function(_callback) {
 	
 	var client = Ti.Network.createHTTPClient();
 	client.onload = function(e) {
-		Ti.API.info(client.responseText);
-		//return 	client.responseText;	
-		return _callback(client.responseText);
+		//Ti.API.info(client.responseText);
+		_callback(JSON.parse(client.responseText).data);
 	};
 	client.onerror = function(e) {
-		
+		Ti.API.info(e);
 	};
 	client.open('GET', "http://todolist2.nodester.com/" + uuid);
 	client.send();
